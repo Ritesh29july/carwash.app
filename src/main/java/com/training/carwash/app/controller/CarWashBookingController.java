@@ -52,4 +52,5 @@ public class CarWashBookingController {
 
     return new ResponseEntity<>(list, HttpStatus.OK);
   }
+
 }

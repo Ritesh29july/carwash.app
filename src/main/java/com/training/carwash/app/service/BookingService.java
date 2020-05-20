@@ -1,6 +1,6 @@
 package com.training.carwash.app.service;
 
-import javax.persistence.EntityManager;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,9 +16,8 @@ public class BookingService {
 
   private Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
+
   private BookingRepository bookingRepository;
-  @Autowired
-  EntityManager em;
 
   @Autowired
   public BookingService(BookingRepository bookingRepository) {
@@ -27,14 +26,17 @@ public class BookingService {
 
   public void saveBookingDetails(BookingDetails bookingDetails) {
     log.info("Before save");
-    em.persist(bookingDetails);
-    // em.save(bookingDetails);
+    // em.persist(bookingDetails);
+    bookingRepository.save(bookingDetails);
+
     log.info("After save");
   }
 
-  public BookingDetails getDetails() {
-    em.find(BookingDetails.class, 1l);
-    return null;
+  public List<BookingDetails> getDetails() {
+    // em.find(BookingDetails.class, 1l);
+
+    return bookingRepository.findAll();
 
   }
+
 }
